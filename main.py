@@ -64,6 +64,7 @@ frames = [rl.LoadTexture(str(i).encode()) for i in frames]
 frame_counter = 0
 frame_time = CTM()
 frame_flip = True
+energy_ball = rl.LoadTexture(b'energy-ball.png')
 
 while not rl.WindowShouldClose():
 	frame_start_time = CTM()
@@ -169,6 +170,19 @@ while not rl.WindowShouldClose():
 		0,
 		(0, 155, 255, 200)
 	)
+
+	# Draw center ball
+	rl.DrawTexturePro(
+		energy_ball, [0, 0, energy_ball.width, energy_ball.height],
+		[
+			width // 2 - ((energy_ball.width * 2) // 4), height // 2 - ((energy_ball.height * 2) // 4),
+			energy_ball.width * 2, energy_ball.height * 2
+		],
+		[energy_ball.width // 2, energy_ball.height // 2],
+		0,
+		(100, 200, 255)
+	)
+
 
 	rl.DrawTexturePro(
 		frames[frame_counter], [0, 0, width, height],
