@@ -68,7 +68,7 @@ frame_flip = True
 while not rl.WindowShouldClose():
 	frame_start_time = CTM()
 
-	elapsed += 2 * rl.GetFrameTime()
+	elapsed += 1 * rl.GetFrameTime()
 	if elapsed > 1.0:
 		elapsed = 0
 
@@ -143,6 +143,7 @@ while not rl.WindowShouldClose():
 	rl.DrawRectangle(0, 0, width, height, [0] * 4)
 
 
+	# --------------------------------------------------------------------------
 	s = tween.easeInOutQuad(elapsed) * 0.1
 	if elapsed == 0:
 		frame_flip = not frame_flip
@@ -150,14 +151,32 @@ while not rl.WindowShouldClose():
 		scale = 1 + -s
 	else:
 		scale = 0.9 + s
-	rl.DrawTextureEx(frames[frame_counter], (0, 0), 0, scale, (0, 155, 255, 200))
-	rl.DrawTextureEx(frames[frame_counter], (6, 0), 0, scale, (55, 200, 55, 100))
-	rl.DrawTextureEx(frames[frame_counter], (0, 6), 0, scale, (255, 0, 55, 100))
+
+
+
+	#rl.DrawTextureEx(frames[frame_counter], (0, 0), 0, scale, (0, 155, 255, 200))
+	#rl.DrawTextureEx(frames[frame_counter], (6, 0), 0, scale, (55, 200, 55, 100))
+	#rl.DrawTextureEx(frames[frame_counter], (0, 6), 0, scale, (255, 0, 55, 100))
+
+	scale_rect = [
+		width // 2 + ((width - width * scale) // 2), height // 2 + ((height - height * scale) // 2),
+		width * scale, height * scale
+	]
+
+	rl.DrawTexturePro(
+		frames[frame_counter], [0, 0, width, height],
+		scale_rect,
+		[width // 2, height // 2],
+		0,
+		(0, 155, 255, 200)
+	)
+
 	if CTM() > frame_time + 30:
 		frame_counter += 1
 		frame_time = CTM()
 		if frame_counter >= len(frames):
 			frame_counter = 0
+	# --------------------------------------------------------------------------
 
 
 	rl.EndTextureMode()
