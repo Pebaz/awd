@@ -144,6 +144,7 @@ while not rl.WindowShouldClose():
 
 
 	# --------------------------------------------------------------------------
+	
 	s = tween.easeInOutQuad(elapsed) * 0.1
 	if elapsed == 0:
 		frame_flip = not frame_flip
@@ -158,17 +159,49 @@ while not rl.WindowShouldClose():
 	#rl.DrawTextureEx(frames[frame_counter], (6, 0), 0, scale, (55, 200, 55, 100))
 	#rl.DrawTextureEx(frames[frame_counter], (0, 6), 0, scale, (255, 0, 55, 100))
 
-	scale_rect = [
-		width // 2 + ((width - width * scale) // 2), height // 2 + ((height - height * scale) // 2),
-		width * scale, height * scale
-	]
+	rl.DrawTexturePro(
+		frames[frame_counter], [0, 0, width, height],
+		[
+			width // 2 + ((width - width * scale) // 2), height // 2 + ((height - height * scale) // 2),
+			width * scale, height * scale
+		],
+		[width // 2 + 6, height // 2 + 6],
+		0,
+		(0, 155, 255, 200)
+	)
 
 	rl.DrawTexturePro(
 		frames[frame_counter], [0, 0, width, height],
-		scale_rect,
+		[
+			width // 2 + ((width - width * scale) // 2), height // 2 + ((height - height * scale) // 2),
+			width * scale, height * scale
+		],
+		[width // 2, height // 2 - 6],
+		0,
+		(55, 200, 55, 100)
+	)
+
+	rl.DrawTexturePro(
+		frames[frame_counter], [0, 0, width, height],
+		[
+			width // 2 + ((width - width * scale) // 2), height // 2 + ((height - height * scale) // 2),
+			width * scale, height * scale
+		],
+		[width // 2 - 6, height // 2],
+		0,
+		(255, 0, 55, 100)
+	)
+
+	scale *= 0.5
+	rl.DrawTexturePro(
+		frames[frame_counter], [0, 0, width, height],
+		[
+			width // 2 + ((width - width * scale) // 2), height // 2 + ((height - height * scale) // 2),
+			width * scale, height * scale
+		],
 		[width // 2, height // 2],
 		0,
-		(0, 155, 255, 200)
+		(255, 155, 0, 55)
 	)
 
 	if CTM() > frame_time + 30:
