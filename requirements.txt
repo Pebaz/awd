@@ -1,0 +1,5 @@
+# https://stackoverflow.com/a/35614580
+pyglm
+pytweening
+screeninfo; sys_platform == 'win32'
+git+https://github.com/electronstudio/raylib-python-cffi
